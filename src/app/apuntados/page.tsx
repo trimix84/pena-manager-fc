@@ -1,4 +1,4 @@
-import { supabase } from "@/lib/supabase";
+import { supabase } from "@/lib/supabaseClient";
 
 export default async function ApuntadosPage() {
   const { data, error } = await supabase
@@ -22,25 +22,22 @@ export default async function ApuntadosPage() {
 
   return (
     <main className="min-h-screen bg-slate-950 p-8 text-white">
-      <h1 className="mb-8 text-3xl font-bold">
-        Apuntados
-      </h1>
+      <h1 className="mb-8 text-3xl font-bold">Apuntados</h1>
 
       <div className="space-y-3">
-        {data?.map((signup, index) => (
-          <div
-            key={index}
-            className="rounded-xl border border-white/10 bg-white/5 p-4"
-          >
-            <p>
-              {signup.players?.name}
-            </p>
+        {data?.map((signup: any, index) => {
+          const player = Array.isArray(signup.players) ? signup.players[0] : signup.players;
 
-            <p className="text-slate-400">
-              {signup.status}
-            </p>
-          </div>
-        ))}
+          return (
+            <div
+              key={index}
+              className="rounded-xl border border-white/10 bg-white/5 p-4"
+            >
+              <p>{player?.name}</p>
+              <p className="text-slate-400">{signup.status}</p>
+            </div>
+          );
+        })}
       </div>
     </main>
   );
