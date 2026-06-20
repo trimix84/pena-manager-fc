@@ -22,12 +22,14 @@ const statusLabel: Record<string, string> = {
   open: "Abierto",
   closed: "Cerrado",
   played: "Jugado",
+  cancelled: "Cancelado",
 };
 
 const statusColor: Record<string, string> = {
   open: "bg-green-500/20 text-green-400 border border-green-500/30",
   closed: "bg-yellow-500/20 text-yellow-400 border border-yellow-500/30",
   played: "bg-gray-500/20 text-gray-400 border border-gray-500/30",
+  cancelled: "bg-red-500/20 text-red-400 border border-red-500/30",
 };
 
 export default function AdminPartidosPage() {
@@ -82,7 +84,11 @@ export default function AdminPartidosPage() {
   return (
     <div className="min-h-screen bg-gray-950 text-white px-4 py-10">
       <div className="max-w-4xl mx-auto">
-        <div className="flex items-center justify-between mb-8">
+        <Link href="/admin" className="text-sm text-gray-400 hover:text-white transition-colors">
+          Volver al panel
+        </Link>
+
+        <div className="flex items-center justify-between mb-8 mt-4">
           <div>
             <h1 className="text-3xl font-bold text-white">Partidos</h1>
             <p className="text-gray-400 mt-1">{matches.length} partidos registrados</p>
